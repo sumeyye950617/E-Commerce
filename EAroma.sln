@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAromaBLL", "EAromaBLL\EAromaBLL.csproj", "{8846D1A0-4CC6-4216-9D19-7C469435FE27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAromaDLL", "EAromaDLL\EAromaDLL.csproj", "{9E8A945E-2887-4036-84B5-FFB6EB097C5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAromaWebUI", "EAromaWebUI\EAromaWebUI.csproj", "{A9481E7C-DE4D-4E64-A82C-9371A006E5EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAromaWebAPI", "EAromaWebAPI\EAromaWebAPI.csproj", "{D5F51669-E649-4881-8D67-0A296B8381E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8846D1A0-4CC6-4216-9D19-7C469435FE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8846D1A0-4CC6-4216-9D19-7C469435FE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8846D1A0-4CC6-4216-9D19-7C469435FE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8846D1A0-4CC6-4216-9D19-7C469435FE27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8A945E-2887-4036-84B5-FFB6EB097C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8A945E-2887-4036-84B5-FFB6EB097C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8A945E-2887-4036-84B5-FFB6EB097C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8A945E-2887-4036-84B5-FFB6EB097C5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9481E7C-DE4D-4E64-A82C-9371A006E5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9481E7C-DE4D-4E64-A82C-9371A006E5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9481E7C-DE4D-4E64-A82C-9371A006E5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9481E7C-DE4D-4E64-A82C-9371A006E5EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5F51669-E649-4881-8D67-0A296B8381E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F51669-E649-4881-8D67-0A296B8381E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F51669-E649-4881-8D67-0A296B8381E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F51669-E649-4881-8D67-0A296B8381E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69ACEFB5-0635-4FB3-8E73-0BE213BE1212}
+	EndGlobalSection
+EndGlobal
