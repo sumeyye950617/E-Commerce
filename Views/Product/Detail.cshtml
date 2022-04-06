@@ -1,0 +1,215 @@
+﻿
+@model ProductVM
+    <!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="blog">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <div class="row no-gutters align-items-center pt-60px">
+                    <div class="col-5 d-none d-sm-block">
+                        @if (Model.Product.ProductCategories.Any())
+                        {
+                            <h1>@Model.Product.ProductCategories.First().Category.Name</h1>
+
+                        }
+                        else
+                        {
+                            <h1>
+                                Kategori Bulunamadı ....
+                            </h1>
+                        }
+
+                        <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@Model.Product.Brand.Name </li>
+
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<!--================Single Product Area =================-->
+<div class="product_image_area">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-6">
+                <div class="owl-carousel owl-theme s_Product_carousel">
+
+                    @if (!Model.Product.ProductPictures.Any())
+                    {
+                        <div class="single-prd-item">
+                            <img class="img-fluid" src="/img/product/noimageavailable_263x280.jpg" alt="Resim Bulunamadı">
+
+                        </div>
+                    }
+                    else
+                    { <div class="single-prd-item ">
+
+
+                            <img class="bigphoto "
+                                 id="first" src="@Model.Product.ProductPictures.First().PicturePath" alt="">
+
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61d4c2435dbb59c3"></script>
+                            <div class="addthis_inline_share_toolbox_26ux"></div>
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        </div>
+
+
+
+
+
+                    }
+
+
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>@Model.Product.Name</h3>
+                    <h2>@Model.Product.Price TL</h2>
+                    <ul class="list">
+                        <li>
+                            <a class="active" href="#">
+                                Ürün Marka                   : @Model.Product.Brand.Name
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+
+
+
+                                <div>
+                                    Stok Durum
+                                    @if (Model.Product.Stock > 0)
+                                    {
+                                        <span style="color:#e1aa5e">       :     Stokta Var </span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color:black">:      Tükendi</span>
+                                    }
+
+
+
+                                </div>
+
+
+
+
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+
+                        @Html.Raw(Model.Product.Detail)
+
+                    </p>
+                    <div class="product_count">
+                        <label for="qty">Miktar</label>
+                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                class="increase items-count" type="button">
+                            <i class="ti-angle-left"></i>
+                        </button><div class="Quantity">                  <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty"></div>
+
+                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                class="reduced items-count" type="button">
+                            <i class="ti-angle-right"> </i>
+
+
+
+                        </button>
+                        <span>
+                            <button class="button primary-btn" onclick="addCart(@Model.Product.ID, @Model.Product.Stock)"> <span>SEPETE EKLE </span> </button>
+
+                        </span>
+
+
+                    </div>
+                    @if (Model.Product.ProductPictures.Count > 1)
+                    {
+                        <div class="card_area d-flex align-items-center">
+                            <div class="p-hover active"  tabindex="1" style="overflow: hidden; outline: none;"></div>
+                            @foreach (ProductPicture pp in Model.Product.ProductPictures)
+                            {
+
+                                <img class="p-hover" id="second" src="@pp.PicturePath" >
+
+                            }
+
+
+
+                        </div>
+
+
+
+                    }
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<br />
+<br />
+<br />
+<br />
+<!--================End Single Product Area =================-->
+@*================ Start related Product area =================*@
+<section class="related-product-area section-margin--small mt-0">
+    <div class="container">
+        <div class="section-intro pb-60px">
+            <p>Piyasadaki Trend Ürünler</p>
+            <h2>En Popüler <span class="section-intro__style">Ürünler</span></h2>
+        </div>
+        <div class="row mt-30">
+
+
+            <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+                <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"></button><button type="button" role="presentation" class="owl-next"><i class="ti-arrow-right"></i></button></div>
+
+                @foreach (Product p in Model.RelatedProducts)
+                {
+                    <div class="card text-center card-product">
+                        <div class="card-product__img">
+
+                            <partial name="_ProductPartial" model="@p" />
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="SepetimModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

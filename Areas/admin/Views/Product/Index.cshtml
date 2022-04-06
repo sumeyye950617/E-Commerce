@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Product>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Ürün Yönetimi<small>Tüm Ürünler</small></h2>
+                        <a asp-controller="Product" asp-action="New" class="btn btn-primary float-right";  style="border-radius: 23px; color: #212529; background-color: #5A738E; border-color: #E7E7E7">Yeni Ürün</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <img class="kResim" />
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                    <tr class="headings">
+                                        <th class="column-title">Ürün Adı</th>
+                                        <th class="column-title">Kategorileri</th>
+                                        <th class="column-title">Markası</th>
+                                        <th class="column-title">Ürün Fiyatı</th>
+                                        <th class="column-title">Stok Miktarı</th>
+                                        <th class="column-title">Görüntülenme Sırası</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Product s in Model)
+                                    {
+                        <tr class="even pointer">
+                            <td onmousemove="$('.kResim').show(); $('.kResim').attr('src', '@(s.ProductPictures.Any()?s.ProductPictures.FirstOrDefault().PicturePath:"/img/nopicture.jpg")'); $('.kResim').css('top', $(this).position().top + 50)" onmouseout="$('.kResim').hide()"><a asp-controller="Product" asp-action="Update" asp-route-id="@s.ID">@s.Name</a></td>
+                            <td>@string.Join('-', s.ProductCategories.Select(s => s.Category.Name))</td>
+                            <td>@(s.BrandID.HasValue? s.Brand.Name:"Marka Yok")</td>
+                            <td>@s.Price TL</td>
+                            <td>@s.Stock</td>
+                            <td>@s.DisplayIndex</td>
+                            <td><a style="color:#fff;cursor:pointer;  border-radius: 23px; color: #212529; background-color:#e1aa5e; border-color:#E7E7E7"  class="btn btn-success btn-sm">Resimler</a></td>
+                            <td><a style="color:#fff;cursor:pointer" class="btn btn-round btn-danger deleteButton" silmeAction="/admin/urun/sil/@s.ID">Sil</a></td>
+                        </tr>}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->

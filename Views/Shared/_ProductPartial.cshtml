@@ -1,0 +1,29 @@
+﻿@model Product
+
+    <div class="card text-center card-product">
+        <div class="card-product__img">
+            @if (Model.ProductPictures.Any())
+            {
+
+                <img class="card-img" src="@Model.ProductPictures.First().PicturePath" alt="@Model.Name">
+            }
+
+            else
+            {
+
+                <img class="card-img" src="img/product/noimageavailable_263x280.jpg" alt="@Model.Name">
+
+            }
+            <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button> <a asp-controller="Product" asp-action="Detail" asp-route-name="@GeneralTool.URLConvert(Model.Name)" asp-route-id="@Model.ID" class="ti-shopping-cart"></a></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <p>@Model.Name</p>
+            <h4 class="card-product__title"><a href="single-product.html">@Model.Detail</a></h4>
+            <p class="card-product__price">@Model.Price</p>
+            <div>@Model.Brand.Name</div>
+        </div>
+    </div>

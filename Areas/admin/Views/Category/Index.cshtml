@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<Category>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Kategori Yönetimi<small>Tüm Kategoriler</small></h2>
+                        <a asp-controller="Category" asp-action="New" class="btn btn-primary float-right" style="border-radius: 23px; color: #212529; background-color: #5A738E; border-color: #E7E7E7">Yeni Kategori</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <img class="kResim" />
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                    <tr class="headings">
+                                        <th class="column-title">Kategori Adı</th>
+                                        <th class="column-title">Görüntülenme Sırası</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Category s in Model)
+                                    {
+                        <tr class="even pointer">
+                            <td><a asp-controller="Category" asp-action="Update" asp-route-id="@s.ID">@s.Name</a></td>
+                            <td>@s.DisplayIndex</td>
+                            <td><a style="color:#fff;cursor:pointer" class="btn btn-round btn-danger deleteButton" silmeAction="/admin/kategori/sil/@s.ID">Sil</a></td>
+                        </tr>}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->

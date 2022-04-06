@@ -1,0 +1,164 @@
+﻿@model CheckOutVM
+@{
+    decimal cartToplam = Model.Carts.Sum(s => s.Price * s.Quantity);
+    decimal ShippingPrice = cartToplam >= ViewBag.ShippingFree ? 0 : 50;
+}
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Product Checkout</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a asp-controller="Cart" asp-action="Index">Alışveriş Sepetiniz</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<!--================Checkout Area =================-->
+<section class="checkout_area section-margin--small">
+    <div class="container">
+        <div class="returning_customer">
+
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Teslimat Adresi</h3>
+                        <form class="row contact_form" asp-controller="Cart" asp-action="CheckOut" method="post" >
+                            <input asp-for="@Model.Order.Price" type="hidden" value="@ShippingPrice" />
+                            <input asp-for="@Model.Order.OrderNo" type="hidden" value="123" />
+
+                            <div class="col-md-6 form-group p_star">
+                                <input class="form-control" id="number"  placeholder="İrtibat Numarası" asp-for="@Model.Order.Phone">
+                        
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <input class="form-control" id="email"  placeholder="Mail Adresiniz" asp-for="@Model.Order.MailAdresi">
+                            
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+
+                                <input class="country_select" placeholder="Teslimat Ülkesi" asp-for="@Model.Order.DeliveryCountry">
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input class="form-control" id="add1" placeholder="Teslimat Adresi" asp-for="@Model.Order.DeliveryAddress">
+
+                            </div>
+
+
+                            <div class="col-md-12 form-group">
+                                <input class="form-control" id="zip"  placeholder="Posta Kodu" asp-for="@Model.Order.DeliveryZipCode">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <input type="checkbox" id="boxAyni">
+                                    <label for="boxAyni">Teslimat Adresi, Fatura Adresi Aynı </label>
+                                </div>
+                            </div>
+                            <div class=" col-lg-12">
+                                <div class="bilingInfo">
+                                    <h3>Fatura Adresi</h3>
+                                    <div class="col-md-12 form-group p_star ">
+                                        <input class="form-control" placeholder="Fatura Adresi" asp-for="@Model.Order.BilingAddress  ">
+
+
+                                    </div>
+
+                                    <div class="col-lg-10 form-group p_star">
+                                        <input placeholder="Fatura Ülkesi" asp-for="@Model.Order.BilingCountry">
+                                        <input placeholder="Fatura Posta Kodu" asp-for="@Model.Order.BilingZipCode">
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        
+
+                            <div class="payment_item" style="margin-left:33px; width:200%">
+                                <div class="">
+
+                                    <select asp-for="@Model.Order.PaymentType" asp-items="@Html.GetEnumSelectList<EPaymentType>()" style="width:200%;height:38px;margin-bottom:20px; border-radius:23px">
+                                        <option value="0">Bir Ödeme Yöntemi Seçiniz</option>
+
+
+                                    </select>
+
+                                   <br />
+                                    <br />
+
+                                    <div class="paymentInfo">
+                                        <div class="paymentCreditCard">
+                                            Kredi Kartı Bilgilerinizi Giriniz
+                                        </div>
+                                        <div class="paymentBank">
+                                            Havale veya EFT Bilgilerinizi Giriniz
+                                        </div>
+                                        <div class="paymentDoor">
+                                            Kapıda Ödeme Bilgilerinizi Giriniz
+                                        </div>
+
+                                    </div>
+                                    <label for="f-option5"></label>
+                                    <div class="check"></div>
+                                </div>
+
+                            </div>
+                          
+                           <br />
+                            <br />
+                            <br />
+                            <br />
+                            <div class="text-center" style="width:100%">
+                                @Html.AntiForgeryToken()
+                                <button class="button button-paypal">Siparişi Tamamla</button>
+                              
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Alışveriş Sepetim</h2>
+                            <ul class="list">
+                                <li><a href="#"><h4>Ürün<span>Toplam</span> </h4></a></li>
+                                @foreach (Cart c in Model.Carts)
+                                {
+                                    <li>
+                                        <div class="p-hover"><img src="@c.Picture" alt="@c.Name" height="90" style="min-width:initial">  </div>
+
+
+                                    </li>
+
+                                    <li><a href="#">@c.Name <span>@c.Price TL</span></a></li>
+
+
+                                }
+
+                            </ul>
+                            <ul class="list list_2">
+
+                                <li><a href="#">Toplam <span>@cartToplam</span></a></li>
+                                <li><a href="#">Kargo<span>@(ShippingPrice==0?"Kargo Bedava":ShippingPrice+"TL")</span></a></li>
+                                <li><a href="#">Sipariş Tutarı<span>@(cartToplam+ShippingPrice) TL</span></a></li>
+                            </ul>
+                           
+                               
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+       
+</section>
+
+    <!--================End Checkout Area =================-->

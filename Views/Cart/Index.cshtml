@@ -1,0 +1,129 @@
+﻿@model List<Cart>
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Shopping Cart</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a asp-controller="Cart" asp-action="Index">Sepet</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sepetteki Ürünler</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Adet</th>
+                            <th scope="col">Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Cart c in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="@c.Picture" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>@c.Name</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>@c.Price</h5>
+                                </td>
+                                <td>
+                                 
+                                    
+                                        <div class="product_count">
+
+                                            <input type="text" name="qty" id="sst" maxlength="12" value="@c.Quantity  " title="Quantity:"
+                                                   class="input-text qty">
+                                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                    class="increase items-count" type="button">
+                                                <i class="ti-angle-left"></i>
+                                            </button>
+                                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                                    class="reduced items-count" type="button">
+                                                <i class="ti-angle-right"></i>
+                                            </button>
+
+
+                                        </div>
+                                    
+
+                                </td>
+                                <td>
+                                    <h5>@(c.Price*c.Quantity)</h5>
+
+                                </td>
+                            </tr>
+                        }
+
+                        <tr class="bottom_button">
+                            <td>
+                                @*</td>
+
+
+                                    <td>*@
+                            </td>
+                           
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <h5>Toplam Tutar</h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    @Model.Sum(x => x.Price * x.Quantity) TL
+                                </h5>
+
+
+
+
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr class="out_button_area">
+                            <td class="d-none-l">
+                            </td>
+                            <td class="">
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a  asp-controller="Cart" asp-action="CheckOut" class="gray_btn">Alışverişi Sonlandır</a>
+                                    <a class="primary-btn ml-2" href="">Alışverişe Devam Et</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->

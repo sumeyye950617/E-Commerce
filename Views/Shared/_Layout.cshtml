@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1254" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aktepe Shop - Home</title>
+    <link rel="icon" href="img/Fevicon.png" type="image/png">
+
+    <link href="/css/sitem.css" rel="stylesheet" />
+    
+
+</head>
+
+<body>
+    @await Component.InvokeAsync("Header")
+
+    @RenderBody()
+    <main class="site-main">
+    </main>
+    @await Component.InvokeAsync("Footer")
+    <script src="/vendors/jquery.validate.min.js"></script>
+
+    <script src="/vendors/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="/js/sitem.min.js"></script>
+
+
+    <script src="/vendors/JavaScript.js"></script>
+
+    <script src="/vendors/JavaScript2.js"></script>
+
+    <script src="/vendors/Ja.js"></script>
+
+
+    
+
+
+    
+
+
+    @RenderSection("ozelScript", false)
+
+</body>
+</html>

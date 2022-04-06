@@ -1,0 +1,95 @@
+﻿@model FooterVM
+<!--================ Start footer Area  =================-->
+<footer class="footer">
+    <div class="footer-area">
+        <div class="container">
+            <div class="row section_gap">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h3 class="footer_title large_title">Biz Kimiz?</h3>
+                        <p>
+                            Bilgi iletişiminin çağdaş, yüksek teknolojilerle bilişim gerçeğini otomasyona geçirecek ETicaret yazılım programlarının arge,üretim,pazarlama ve satışını gerçekleştiren ve kurumların etkin ve yetkin bir biçimde internet web portallarının kullanımlarını sağlamak için kurulmuş bir kurumdur.
+                        </p>
+                       
+                    </div>
+                </div>
+                <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h3 class="footer_title">   Müşteri Hizmetleri</h3>
+                        <ul class="list">
+                            @foreach (CustomerService c in Model.CustomerServices)
+                            {
+                                <li><a href="">@c.Title</a></li>
+
+                            }
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget instafeed">
+                        <h4 class="footer_title">Galerimiz</h4>
+                        <ul class="list instafeed d-flex flex-wrap">
+                            <li><img src="img/gallery/r1.jpg" alt=""></li>
+                            <li><img src="img/gallery/r2.jpg" alt=""></li>
+                            <li><img src="img/gallery/r3.jpg" alt=""></li>
+                            <li><img src="img/gallery/r5.jpg" alt=""></li>
+                            <li><img src="img/gallery/r7.jpg" alt=""></li>
+                            <li><img src="img/gallery/r8.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title">Bizimle İletişime Geçin</h4>
+                        <div class="ml-40">
+                            @foreach (FooterContact contact in Model.FooterContacts)
+                            {
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Ofis Adresimiz
+                                </p>
+                                <p>@contact.Adress</p>
+
+
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                  @contact.TELNO
+                                </p>
+
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    @contact.MailAddress
+                                </p>
+
+
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="footer-bottom">
+        <div class="container">
+            <div class="row d-flex">
+                <p class="col-lg-12 footer-text text-center">-->
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <!--Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>-->
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <!--</p>
+            </div>
+        </div>
+    </div>-->
+</footer>
+<!--================ End footer Area  =================-->

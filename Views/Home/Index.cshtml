@@ -1,0 +1,197 @@
+﻿@model IndexVM
+<section class="hero-banner">
+    <div class="container">
+
+        <div class="row no-gutters align-items-center pt-60px">
+            <div class="col-5 d-none d-sm-block">
+                <div class="hero-banner__img">
+                    <img class="img-fluid" src="img/rm373batch12-016_490x742.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+                <div class="hero-banner__content">
+                    <h4>Alışverişin En Güzel Adresi</h4>
+                    <h1>  Alışverişin Tam Zamanı </h1>
+                    <p>Alışveriş Hiç Bu Kadar Keyifli Olmamıştı... Sizinde En Kaliteli Ürünleri, En Uygun Fiyatlara Almak Hakkınız...</p>
+                    <a class="button button-hero" href="#">Satın Al</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ Hero banner start =================-->
+<!--================ Hero Carousel start =================-->
+<section class="section-margin mt-0">
+    <div class="owl-carousel owl-theme hero-carousel ">
+
+     
+        @foreach (Banner s in Model.Slides)
+        {
+
+
+            <div class=" hero-carousel__slide">
+                <img src="@s.Picture" alt="" class="img-fluid">
+                <a href="#" class="hero-carousel__slideOverlay">
+                    <h3>@s.Name</h3>
+                    <p>@s.Description</p>
+                </a>
+            </div>
+        }
+    </div>
+        }
+   
+</section>
+<!--================ Hero Carousel end =================-->
+<!-- ================ trending product section start ================= -->
+<section class="section-margin calc-60px">
+    <div class="container">
+        <div class="section-intro pb-60px">
+            <p>EN TREND ÜRÜNLER</p>
+            <h2>Trend <span class="section-intro__style">Ürünler</span></h2>
+        </div>
+        <div class="row">
+            @foreach (Product p in Model.TrendProducts)
+            {
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <partial name="_ProductPartial" model="@p" />
+
+                </div>
+                @*<div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="card text-center card-product">
+                            <div class="card-product__img">
+                                @if (p.ProductPictures.Any())
+                                {
+
+                                    <img class="card-img" src="@p.ProductPictures.First().PicturePath" alt="@p.Name">
+                                }
+
+                                else
+                                {
+
+                                    <img class="card-img" src="img/product/noimageavailable.jpg" alt="@p.Name">
+
+                                }
+                                <ul class="card-product__imgOverlay">
+                                    <li><button><i class="ti-search"></i></button></li>
+                                    <li><button><i class="ti-shopping-cart"></i></button></li>
+                                    <li><button><i class="ti-heart"></i></button></li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <p>@p.Name</p>
+                                <h4 class="card-product__title"><a href="single-product.html">@p.Detail</a></h4>
+                                <p class="card-product__price">@p.Price</p>
+                            </div>
+                        </div>
+                    </div>*@
+            }
+
+        </div>
+    </div>
+</section>
+<!-- ================ trending product section end ================= -->
+<!-- ================ offer section start ================= -->
+<section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="offer__content text-center">
+                    <h3>ŞOK 50% İndirim</h3>
+                    <h4>Winter Sale</h4>
+                    <p> Büyük Kış İndirimlerini Sakın Kaçırmayın</p>
+                    <a class="button button--active mt-3 mt-xl-4" href="#">Satın Al</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ offer section end ================= -->
+<!-- ================ Best Selling item  carousel ================= -->
+<!-- ================ Best Selling item  carousel ================= -->
+<section class="section-margin calc-60px">
+    <div class="container">
+        <div class="section-intro pb-60px">
+            <p>En Çok Satan Ürünler</p>
+            <h2>EN ÇOK <span class="section-intro__style">SATANLAR</span></h2>
+        </div>
+        <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+            <div class="owl-nav"><button type="button" role="presentation" class="owl-prev" style="width:5px"></button><button type="button" role="presentation" class="owl-next" style="width:0px"></button></div>
+        
+
+            @foreach (Product p in Model.BestSellerProducts)
+            {
+                <div class="card text-center card-product">
+                    <div class="card-product__img">
+
+                        <partial name="_ProductPartial" model="@p" />
+                    </div>
+                </div>
+            }
+
+
+        </div>
+                </div>
+</section>
+<!-- ================ Best Selling item  carousel end ================= -->
+<!-- ================ Blog section start ================= -->
+<section class="blog">
+    <div class="container">
+        <div class="section-intro pb-60px">
+            <p>En Çok Okunan  Blog Yazıları </p>
+            <h2>Blog <span class="section-intro__style">Yazıları</span></h2>
+        </div>
+
+        <div class="row">
+            @foreach (Blog b in Model.Blogs)
+            {
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card card-blog">
+                        <div class="card-blog__img">
+                            <img class="card-img rounded-0" src="@b.PicturePath" alt="">
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-blog__info">
+                                <li><a href="#"> Sümeyye</a></li>
+                                <li><a href="#"><i class="ti-comments-smiley"></i>@b.DisplayIndex</a></li>
+                            </ul>
+                            <h4 class="card-blog__title"><a href="single-blog.html">@b.Name</a></h4>
+                            <p>@b.Detail</p>
+                            <a class="card-blog__link" href="#">Daha Fazlası  <i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+<!-- ================ Blog section end ================= -->
+<!-- ================ Subscribe section start ================= -->
+<section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <h3 class="subscribe__title">BİZE ULAŞMAK ÇOK KOLAY</h3>
+            <p>AktepeShop sizin ihtiyaçlarınızı anlayan,  kaliteli hizmet sunan E-Ticaret Sitesidir</p>
+            <div id="mc_embed_signup">
+                <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
+                    <div class="form-group ml-sm-auto">
+                        <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Mail Adresiniz" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '">
+                        <div class="info"></div>
+                    </div>
+                    <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
+                    <div style="position: absolute; left: -5000px;">
+                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ================ Subscribe section end ================= -->
